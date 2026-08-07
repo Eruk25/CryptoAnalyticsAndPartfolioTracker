@@ -1,2 +1,8 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CryptoAnalyticsAndPartfolioTracker.API/CryptoAnalyticsAndPartfolioTracker.API.csproj" />
+    <Project Path="src/CryptoAnalyticsAndPartfolioTracker.Application/CryptoAnalyticsAndPartfolioTracker.Application.csproj" />
+    <Project Path="src/CryptoAnalyticsAndPartfolioTracker.Domain/CryptoAnalyticsAndPartfolioTracker.Domain.csproj" />
+    <Project Path="src/CryptoAnalyticsAndPartfolioTracker.Infrastructure/CryptoAnalyticsAndPartfolioTracker.Infrastructure.csproj" />
+  </Folder>
 </Solution>
