@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CryptoAnalyticsAndPartfolioTracker.Application\CryptoAnalyticsAndPartfolioTracker.Application.csproj" />
+  </ItemGroup>
+
 </Project>
