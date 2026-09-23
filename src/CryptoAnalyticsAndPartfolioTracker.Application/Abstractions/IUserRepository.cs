@@ -9,7 +9,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.Application.Abstractions
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default);
-        Task<User> GetUserAsync(CancellationToken cancellationToken = default);
+        Task<User> GetUserAsync(Guid UserId, CancellationToken cancellationToken = default);
         Task CreateAsync(User user, CancellationToken cancellationToken = default);
         Task UpdateAsync(User user, CancellationToken cancellationToken = default);
         Task RemoveAsync(User user, CancellationToken cancellationToken = default);
