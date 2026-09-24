@@ -8,10 +8,10 @@ namespace CryptoAnalyticsAndPartfolioTracker.Domain.Entities
 {
     public class User
     {
-        public Guid UserId { get; private set; }
-        public string UserName { get; private set; }
-        public string Email { get; private set; }
-        public string HashPassword { get; private set; }
+        public Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string HashPassword { get; set; }
 
         public User(string userName, string email, string hashPasswrod)
         {
