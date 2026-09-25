@@ -22,6 +22,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repo
         public async Task CreateAsync(User user, CancellationToken cancellationToken = default)
         {
             await _context.Users.AddAsync(user, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -32,7 +33,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repo
 
         public async Task<User?> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default)
         {
-            var user = await _context.Users.FindAsync(new object[] { email }, cancellationToken);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
             return user;
         }
 
@@ -45,11 +46,13 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repo
         public async Task RemoveAsync(User user, CancellationToken cancellationToken = default)
         {
             _context.Remove(user);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task UpdateAsync(User user, CancellationToken cancellationToken = default)
         {
             _context.Update(user);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
