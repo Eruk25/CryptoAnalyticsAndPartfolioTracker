@@ -135,3 +135,5 @@ _NCrunch*
 .idea/
 
 AGENTS.md
+
+appsettings.Development.json
