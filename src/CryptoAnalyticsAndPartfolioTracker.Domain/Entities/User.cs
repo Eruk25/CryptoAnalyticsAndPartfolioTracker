@@ -13,6 +13,8 @@ namespace CryptoAnalyticsAndPartfolioTracker.Domain.Entities
         public string Email { get; set; }
         public string HashPassword { get; set; }
 
+        private User() { }
+
         public User(string userName, string email, string hashPasswrod)
         {
             UserName = userName;
