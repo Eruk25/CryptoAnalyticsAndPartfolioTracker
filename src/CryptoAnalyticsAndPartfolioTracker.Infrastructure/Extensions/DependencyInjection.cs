@@ -17,7 +17,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Extensions
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
             services.AddDbContext<CryptoContext>(options =>
