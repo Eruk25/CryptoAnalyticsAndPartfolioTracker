@@ -23,6 +23,8 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Extensions
             services.AddDbContext<CryptoContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            services.Configure<AuthOptions>(configuration.GetSection("AuthOptions"));
+
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IUserRepository, UserRepository>();
