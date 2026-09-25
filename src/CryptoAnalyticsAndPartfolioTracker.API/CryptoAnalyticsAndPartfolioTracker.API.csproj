@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CryptoAnalyticsAndPartfolioTracker.Application\CryptoAnalyticsAndPartfolioTracker.Application.csproj" />
+    <ProjectReference Include="..\CryptoAnalyticsAndPartfolioTracker.Infrastructure\CryptoAnalyticsAndPartfolioTracker.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
