@@ -23,7 +23,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.API.Controllers
         }
 
         [HttpPost]
-        [Route("/register")]
+        [Route("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest request, CancellationToken cancellationToken)
         {
             await _mediator.Send(new RegisterUserCommand(request.UserName, request.Email, request.Password), cancellationToken);
@@ -32,7 +32,7 @@ namespace CryptoAnalyticsAndPartfolioTracker.API.Controllers
         }
 
         [HttpGet]
-        [Route("/login")]
+        [Route("login")]
         public async Task<ActionResult<string>> LoginAsync([FromBody] LoginRequest request, CancellationToken cancellationToken)
         {
             var token = await _mediator.Send(new LoginUserCommand(request.Email, request.Password), cancellationToken);
