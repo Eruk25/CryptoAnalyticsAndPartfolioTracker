@@ -8,17 +8,19 @@ namespace CryptoAnalyticsAndPartfolioTracker.Domain.Entities
 {
     public class Partfolio
     {
-        public Guid PartfolioId { get; private set; }
-        public Guid UserId { get; private set; }
-        public User? User { get; private set; }
-        public string Operation { get; private set; }
-        public string Coin { get; private set; }
+        public Guid PartfolioId { get; set; }
+        public Guid UserId { get; set; }
+        public User? User { get; set; }
+        public string Operation { get; set; }
+        public string Coin { get; set; }
+        public string PlatformTitle { get; set; }
 
-        public Partfolio(Guid userId, string operation, string coin)
+        public Partfolio(Guid userId, string operation, string coin, string platformTitle)
         {
             UserId = userId;
             Operation = operation;
             Coin = coin;
+            PlatformTitle = platformTitle;
         }
     }
 }
