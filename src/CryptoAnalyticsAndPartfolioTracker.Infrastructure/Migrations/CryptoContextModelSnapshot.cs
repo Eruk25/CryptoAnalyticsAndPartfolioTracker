@@ -22,6 +22,34 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CryptoAnalyticsAndPartfolioTracker.Domain.Entities.Partfolio", b =>
+                {
+                    b.Property<Guid>("PartfolioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Coin")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Operation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlatformTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PartfolioId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Partfolios");
+                });
+
             modelBuilder.Entity("CryptoAnalyticsAndPartfolioTracker.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -46,6 +74,17 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("CryptoAnalyticsAndPartfolioTracker.Domain.Entities.Partfolio", b =>
+                {
+                    b.HasOne("CryptoAnalyticsAndPartfolioTracker.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
