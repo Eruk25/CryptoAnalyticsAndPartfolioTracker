@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.Parser;
 using MediatR;
 
-namespace CryptoAnalyticsAndPartfolioTracker.Application.Partfolio.Import
+namespace CryptoAnalyticsAndPartfolioTracker.Application.Partfolios.Import
 {
     public record ImportCommand(Guid UserId, IEnumerable<FileUpload> Files) : IRequest;
 }
