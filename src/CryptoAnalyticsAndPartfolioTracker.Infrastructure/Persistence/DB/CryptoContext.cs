@@ -11,10 +11,12 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Persistence.DB
     public class CryptoContext(DbContextOptions<CryptoContext> options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Partfolio> Partfolios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new PartfolioConfiguration());
         }
     }
 }
