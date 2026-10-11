@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions;
 using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.JwtGenerator;
+using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.Parser;
 using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.PasswordHasher;
 using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.JwtGenerator;
+using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Parser;
 using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.PasswordHasher;
 using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repositories;
 using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Persistence.DB;
@@ -28,6 +30,8 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Extensions
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IParser, CsvParser>();
+            services.AddScoped<IParserSolver, ParserSolver>();
 
             return services;
         }
