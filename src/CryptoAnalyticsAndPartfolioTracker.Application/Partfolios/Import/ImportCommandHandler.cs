@@ -27,12 +27,12 @@ namespace CryptoAnalyticsAndPartfolioTracker.Application.Partfolios.Import
             {
                 var parser = _solver.Solve(file.ContentType);
 
-                var document = await parser.ParseAsync(file.Stream);
+                var document = parser.Parse(file.Stream);
 
                 if (!_importer.IsHandle(document))
                     throw new InvalidDataException("Unsupported data format");
 
-                await _importer.Import(document);
+                await _importer.ImportAsync(document, request.UserId, cancellationToken);
             }
         }
     }
