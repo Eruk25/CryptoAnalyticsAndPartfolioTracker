@@ -9,6 +9,6 @@ namespace CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.Parser
     public interface IParser
     {
         bool IsParse(string contentType);
-        Task<CsvDocument> ParseAsync(Stream stream);
+        IDocument Parse(Stream stream);
     }
 }
