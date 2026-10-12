@@ -8,7 +8,8 @@ namespace CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.Repositori
 {
     public interface IPartfolioRepository
     {
-        Task<Partfolio?> GetByUserId(Guid userId, CancellationToken cancellationToken = default);
-        Task CreateAsync(Partfolio partfolio, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Partfolio>?> GetAllByUserIdAsync(Guid userId, CancellationToken cancellationToken = default);
+        Task CreateAsync(IEnumerable<Partfolio> partfolios, CancellationToken cancellationToken = default);
+        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
