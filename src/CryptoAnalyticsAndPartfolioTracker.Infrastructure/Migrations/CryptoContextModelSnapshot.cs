@@ -32,6 +32,12 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Operation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
