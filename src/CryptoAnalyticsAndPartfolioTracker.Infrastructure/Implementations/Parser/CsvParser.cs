@@ -20,34 +20,36 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Pars
         public bool IsParse(string contentType)
             => types.Contains(contentType);
 
-        public Task<CsvDocument> ParseAsync(Stream stream)
+        public IDocument Parse(Stream stream)
         {
-            using var reader = new StreamReader(stream);
-            using var csv = new CsvReader(reader, true);
+            var reader = new StreamReader(stream);
+            var csv = new CsvReader(reader, true);
 
             var headers = csv.GetFieldHeaders();
-            var rows = new List<CsvRow>();
 
-            while (csv.ReadNextRecord())
+            return new CsvDocument(headers, ReadRows(csv, headers, reader));
+        }
+
+        private static IEnumerable<DataRow> ReadRows(CsvReader csv, string[] headers, StreamReader reader)
+        {
+            using (reader)
+            using (csv)
             {
-                var row = new Dictionary<string, string>();
-                foreach (var header in headers)
+                while (csv.ReadNextRecord())
                 {
-                    row[header] = csv[header] ?? string.Empty;
+                    var values = new Dictionary<string, string>();
+
+                    foreach (var header in headers)
+                    {
+                        values[header] = csv[header] ?? string.Empty;
+                    }
+
+                    yield return new DataRow
+                    {
+                        Values = values
+                    };
                 }
-
-                rows.Add(new CsvRow
-                {
-                    Values = row
-                });
             }
-            var document = new CsvDocument()
-            {
-                Headers = headers,
-                Rows = rows
-            };
-
-            return Task.FromResult(document);
         }
     }
 }
