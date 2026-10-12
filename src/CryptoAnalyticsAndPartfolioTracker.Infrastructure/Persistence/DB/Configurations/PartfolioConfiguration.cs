@@ -19,7 +19,9 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Persistence.DB.Confi
                 .HasForeignKey(p => p.UserId);
 
             builder.Property(p => p.Operation);
+            builder.Property(p => p.Date);
             builder.Property(p => p.Coin);
+            builder.Property(p => p.Note);
             builder.Property(p => p.PlatformTitle);
         }
     }
