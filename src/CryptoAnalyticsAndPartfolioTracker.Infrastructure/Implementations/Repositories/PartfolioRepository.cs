@@ -6,6 +6,7 @@ using CryptoAnalyticsAndPartfolioTracker.Application.Abstractions.Repositories;
 using CryptoAnalyticsAndPartfolioTracker.Domain.Entities;
 using CryptoAnalyticsAndPartfolioTracker.Infrastructure.Persistence.DB;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repositories
 {
@@ -18,17 +19,21 @@ namespace CryptoAnalyticsAndPartfolioTracker.Infrastructure.Implementations.Repo
             _context = context;
         }
 
-        public async Task CreateAsync(Partfolio partfolio, CancellationToken cancellationToken)
+        public async Task CreateAsync(IEnumerable<Partfolio> partfolios, CancellationToken cancellationToken)
         {
-            await _context.Partfolios.AddAsync(partfolio, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
+            await _context.Partfolios.AddRangeAsync(partfolios, cancellationToken);
         }
 
-        public async Task<Partfolio?> GetByUserId(Guid userId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Partfolio>?> GetAllByUserIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            var partfolio = await _context.Partfolios.FindAsync([userId], cancellationToken);
+            var partfolios = await _context.Partfolios.Where(p => p.UserId == userId).ToListAsync();
+            return partfolios;
+        }
 
-            return partfolio;
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+            _context.ChangeTracker.Clear();
         }
     }
 }
