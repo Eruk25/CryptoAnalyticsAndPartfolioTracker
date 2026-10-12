@@ -12,14 +12,18 @@ namespace CryptoAnalyticsAndPartfolioTracker.Domain.Entities
         public Guid UserId { get; set; }
         public User? User { get; set; }
         public string Operation { get; set; }
+        public DateTime Date { get; set; }
         public string Coin { get; set; }
+        public string? Note { get; set; }
         public string PlatformTitle { get; set; }
 
-        public Partfolio(Guid userId, string operation, string coin, string platformTitle)
+        public Partfolio(Guid userId, DateTime date, string operation, string coin, string? note, string platformTitle)
         {
             UserId = userId;
+            Date = date;
             Operation = operation;
             Coin = coin;
+            Note = note;
             PlatformTitle = platformTitle;
         }
     }
