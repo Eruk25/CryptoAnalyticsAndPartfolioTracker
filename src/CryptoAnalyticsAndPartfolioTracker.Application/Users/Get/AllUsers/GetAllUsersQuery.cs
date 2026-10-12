@@ -7,5 +7,5 @@ using MediatR;
 
 namespace CryptoAnalyticsAndPartfolioTracker.Application.Users.Get
 {
-    public record GetAllUsersQuery() : IRequest<IEnumerable<User>>;
+    public record GetAllUsersQuery(Guid UserId) : IRequest<IEnumerable<User>>;
 }
